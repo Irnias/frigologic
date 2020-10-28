@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frigologic</title>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <header>
+        <h1 class="titulo__principal">CALCULADORA DE FRIGORÍAS</h1>
+        <P class="titulo__parrafo">Descubrí el equipo ideal que mejor se ajusta a tu ambiente.</P>
+    </header>
+    <section id="temperatura">
+        <h2 class="titulo">ZONA DE TEMPERATURA</h2>
+        <div class="temperatura__contenedor">
+            <div class="temperatura__botonera">
+                <div class="temperatura__boton">
+                    <button name="templada" type="button" id="templada" value="templada"><img
+                            src="imagenes/templada.png" alt=""></button>
+                    <label for="templada">TEMPLADA</label>
+                </div>
+                <div class="temperatura__boton">
+                    <button name="calida" type="button" id="calida" value="calida"><img src="imagenes/calida.png"
+                            alt=""></button>
+                    <label for="calida">CALIDA</label>
+                </div>
+                <div class="temperatura__boton">
+                    <button name="muy_calida" type="button" id="muy_calida" value="muy_calida"><img
+                            src="imagenes/muycalida.png" alt=""></button>
+                    <label for="muy_calida">MUY CALIDA</label>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="dimensiones">
+        <h2 class="titulo">DIMENSIONES DEL AMBIENTE</h2>
+        <div class="dimensiones__contenedor">
+            <div class="dimensiones__valores">
+                <label for="largo">Largo (mts)</label>
+                <input type="text" name="largo" id="largo" placeholder="0.0" />
+            </div>
+            <div class="dimensiones__valores">
+                <label for="ancho">Ancho (mts)</label>
+                <input type="text" name="ancho" id="ancho" placeholder="0.0" />
+            </div>
+            <div class="dimensiones__valores">
+                <label for="alto">Alto (mts)</label>
+                <input type="text" name="alto" id="alto" placeholder="0.0" />
+                </divZ>
+            </div>
+            <div class="superficie__contenedor">
+                <label class="superficie__titulo" for="SuperficieTotal">Superficie Total (m3)</label>
+                <textarea name="SuperficieTotal" id="SuperficieTotal" cols="10" rows="1"></textarea>
+            </div>
+    </section>
+    <section id="adicionales">
+        <h2 class="titulo">DATOS ADICIONALES</h2>
+        <div class="adicionales__contenedor">
+            <label for="orientacion">Orientación:</label>
+            <select name="orientacion" id="orientacion">
+              <option value="norte">Norte</option>
+              <option value="sur">Sur</option>
+              <option value="este">Este</option>
+              <option value="oeste">Oeste</option>
+            </select>
+          </div>
+        <div class="adicionales__contenedor">
+            <label for="checkbox">Cocina</label>
+            <input type="checkbox" name="accept" value="1" required />
+        </div>
+        <div class="adicionales__contenedor">
+            <label for="ventanas">Ventanas</label>
+            <input type="text" name="ventanas" id="ventanas" placeholder="0" />
+        </div>
+        <div class="adicionales__contenedor">
+            <label for="personas">Personas ocupantes</label>
+            <input type="text" name="personas" id="personas" placeholder="1" />
+        </div>
+    </section>
+    <section id="botonera">
+        <button name="limpliar" type="reset" id="limpiar" value="limpiar">Limpiar</button>
+        <button name="calcular" type="button" id="calcular" value="calcular">CALCULAR</button>
+        <button name="ayuda" type="reset" id="ayuda" value="ayuda">Ayuda</button>
+    </section>
+    <section id="valores">
+        <div class="valores__contenedor">
+            <h3 class="valores__titulo">Kcal/h</h3>
+            <textarea name="kcal" id="kcal" cols="10" rows="1"></textarea>
+        </div>
+        <div class="valores__contenedor">
+            <h3 class="valores__titulo">Watts</h3>
+            <textarea name="kcal" id="kcal" cols="10" rows="1"></textarea>
+        </div>
+        <div class="valores__contenedor">
+            <h3 class="valores__titulo">BTU</h3>
+            <textarea name="kcal" id="kcal" cols="10" rows="1"></textarea>
+        </div>
+    </section>
+    <section id="resultado">
+        <h2 class="resultado__titulo">EQUIPO RECOMENDADO</h2>
+        <textarea name="frigorias" id="frigorias" cols="20" rows="1"></textarea>
+    </section>
+    <section id="acciones">
+        <button name="guardar" type="button" id="guardar" value="guardar"><img src="imagenes/download.png"
+                alt=""></button>
+        <button name="imprimir" type="button" id="imprimir" value="imprimir"><img src="imagenes/printer.png"
+                alt=""></button>
+    </section>
+</body>
+
+</html>
