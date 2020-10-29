@@ -1,41 +1,40 @@
 //Este programa se propone calcular las frigorías y watts del equipo de refrigeración que se ajuste al ambiente del usuario a partir de sus propiedades. Dicho resultado se refleja en un informe que puede descargarse o imprimirse//
-//Al definir las propiedades del objeto se dejan los datos en blanco y se setean en duro debajo para debug, ya que la intención es que los datos los complete el usuario mediante buttons, imputs y checkbox en el HTML//
+//Las propiedades del objeto se definen por constructor. Debajo están seteadas en duro para debug. El usuario seteará las propiedades mediante buttons, imputs y checkbox en el HTML//
 
-function Ambiente() {
+function Ambiente(unaTemperatura, unLargo, unAncho, unAlto, unaOrientacion, esCocina, cantidadDeVentanas, cantidadDeOcupantes) {
 
-    this.Temperatura = '';
-    this.Largo = '';
-    this.Ancho = '';
-    this.Alto = '';
-    this.Orientacion = '';
-    this.Cocina = '';
-    this.Ventanas = '';
-    this.Ocupantes = '';
-    this.multiplicadorTemperatura = '';
-    this.superficieTotal = '';
-    this.coeficienteOrientacion = '';
-    this.coeficienteCocina = '';
-    this.coeficienteVentanas = '';
-    this.coeficienteOcupantes = '';
-    this.totalFrigorias = '';
+    this.Temperatura = unaTemperatura;
+    this.Largo = unLargo;
+    this.Ancho = unAncho;
+    this.Alto = unAlto;
+    this.Orientacion = unaOrientacion;
+    this.Cocina = esCocina;
+    this.Ventanas = cantidadDeVentanas;
+    this.Ocupantes = cantidadDeOcupantes;
 
-    this.setTemperatura = (temperatura) => { this.Temperatura = temperatura; };
+    //METODO GLOBAL//
+    
+    this.calculoGlobal = () => {
 
-    this.setLargo = (largo) => { this.Largo = largo; };
+        var coeficienteTemperatura = this.calcularTemperatura();
+        var superficieTotal = this.calcularSuperficieTotal();
+        var coeficienteOrientacion = this.calcularOrientacion();
+        var coeficienteCocina = this.calcularCocina();
+        var coeficienteVentanas = this.calcularVentanas();
+        var coeficienteOcupantes = this.calcularOcupantes();
 
-    this.setAncho = (ancho) => { this.Ancho = ancho; };
+        var Frigorias = (coeficienteTemperatura * superficieTotal) + coeficienteOrientacion + coeficienteCocina + coeficienteVentanas + coeficienteOcupantes;
+        var Kcal = Frigorias * 1;
+        var Watts = Frigorias * 1.163;
+        var Btu = Frigorias * 4;
 
-    this.setAlto = (alto) => { this.Alto = alto; };
+        console.log(Frigorias);
+        console.log(Kcal);
+        console.log(Watts);
+        console.log(Btu);
+    }
 
-    this.setOrientacion = (orientacion) => { this.Orientacion = orientacion; };
-
-    this.setCocina = (cocina) => { this.Cocina = cocina; };
-
-    this.setVentanas = (ventanas) => { this.Ventanas = ventanas };
-
-    this.setOcupantes = (ocupantes) => { this.Ocupantes = ocupantes };
-
-    this.getCoeficienteTemperatura = () => {
+    this.calcularTemperatura = () => {
 
         var multiplicadorTemperatura;
         switch (this.Temperatura) {
@@ -50,125 +49,76 @@ function Ambiente() {
                 break;
         }
 
-        this.multiplicadorTemperatura = multiplicadorTemperatura;
         return multiplicadorTemperatura;
-    }
+    };
 
-    this.getSuperficieTotal = () => {
+    this.calcularSuperficieTotal = () => {
 
-        var superficieTotal = this.Largo * this.Ancho * this.Alto;
-        
-        this.superficieTotal = superficieTotal;
-        return superficieTotal;
-    }
+        var metroscubicos;
 
-    this.getCoeficienteOrientacion = () => {
+        metroscubicos = this.Largo * this.Ancho * this.Alto;
 
-        var coeficienteOrientacion;
+        return metroscubicos;
+    };
+
+    this.calcularOrientacion = () => {
+
+        var orientacion;
         switch (this.Orientacion) {
             case "norte":
-                coeficienteOrientacion = 200;
+                orientacion = 200;
                 break;
             case "sur":
-                coeficienteOrientacion = 300;
+                orientacion = 300;
                 break;
             case "este":
-                coeficienteOrientacion = 400;
+                orientacion = 400;
                 break;
+
             default:
-                coeficienteOrientacion = 100;
+                orientacion = 100;
                 break;
         }
 
-        this.coeficienteOrientacion = coeficienteOrientacion;
-        return coeficienteOrientacion;
-    }
+        return orientacion;
+    };
 
-    this.getCoeficienteCocina = () => {
-
-        var coeficienteCocina;
-        if (this.Cocina = true) {
-            coeficienteCocina = 1000;
+    this.calcularCocina = () => {
+        var cocina;
+        if (this.Cocina) {
+            cocina = 1000;
         } else {
-            coeficienteCocina = 0;
+            cocina = 0;
         }
 
-        this.coeficienteCocina = coeficienteCocina;
-        return coeficienteCocina;
-    }
+        return cocina;
+    };
 
-    this.getCoeficienteVentanas = () => {
+    this.calcularVentanas = () => {
+        var ventanas;
 
-        var coeficienteVentanas = this.Ventanas * 500;
+        ventanas = this.Ventanas * 500;
 
-        this.coeficienteVentanas = coeficienteVentanas;
-        return coeficienteVentanas;
-    }
+        return ventanas;
+    };
 
-    this.getCoeficienteOcupantes = () => {
+    this.calcularOcupantes = () => {
 
-        var coeficienteOcupantes = this.Ocupantes * 150;
+        var ocupantes;
 
-        this.coeficienteOcupantes = coeficienteOcupantes;
-        return coeficienteOcupantes;
-    }
+        ocupantes = this.Ocupantes * 150;
 
-    //FUNCIÓN PRINCIPAL//
-    
-    this.getFrigorias = () => {
-
-        var totalFrigorias = (this.multiplicadorTemperatura * this.superficieTotal) + this.coeficienteOrientacion + this.coeficienteCocina + this.coeficienteVentanas + this.coeficienteOcupantes;
-
-        this.totalFrigorias = totalFrigorias;
-        return totalFrigorias;
-    }
-
-    this.getKcal = () => {
-
-        var kcal = this.totalFrigorias * 1;
-
-        return kcal;
-    }
-
-    this.getWatts = () => {
-
-        var watts = this.totalFrigorias * 1.163;
-
-        return watts;
-    }
-
-    this.getBtu = () => {
-
-        var btu = this.totalFrigorias * 4;
-
-        return btu;
-    }
-
+        return ocupantes;
+    };
 }
 
-let miAmbiente = new Ambiente();
-miAmbiente.setTemperatura("templada");
-miAmbiente.setLargo(5);
-miAmbiente.setAncho(3);
-miAmbiente.setAlto(2);
-miAmbiente.setOrientacion("este");
-miAmbiente.setCocina(false);
-miAmbiente.setVentanas(2);
-miAmbiente.setOcupantes(2);
-miAmbiente.getCoeficienteTemperatura();
-miAmbiente.getSuperficieTotal();
-miAmbiente.getCoeficienteOrientacion();
-miAmbiente.getCoeficienteCocina();
-miAmbiente.getCoeficienteVentanas();
-miAmbiente.getCoeficienteOcupantes();
-miAmbiente.getFrigorias();
-miAmbiente.getKcal();
-miAmbiente.getWatts();
-miAmbiente.getBtu();
+let miAmbiente = new Ambiente("muy calida", 5, 3, 2, "norte", false, 2, 3)
+
+miAmbiente.calculoGlobal();
 
 //Botón imprimir//
 function imprimir() {
-	window.print();
+    window.print();
 }
 
 //Botón guardar//
