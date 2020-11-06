@@ -1,91 +1,34 @@
 //Este programa se propone calcular las frigorías y watts del equipo de refrigeración que se ajuste al ambiente del usuario a partir de sus propiedades. Dicho resultado se refleja en un informe que puede descargarse o imprimirse//
 //Las propiedades del objeto se definen por constructor. Debajo están seteadas en duro para debug. El usuario seteará las propiedades mediante buttons, imputs y checkbox en el HTML//
 
-function Ambiente(unaTemperatura) {
+function Ambiente() {
 
-    this.Temperatura = unaTemperatura;
-    this.Largo = null;
-    this.Ancho = null;
-    this.Alto = null;
-    this.Orientacion = null;
-    this.Cocina = null;
-    this.Ventanas = null;
-    this.Ocupantes = null;
+    this.Temperatura = '';
+    this.Largo = '';
+    this.Ancho = '';
+    this.Alto = '';
+    this.Orientacion = '';
+    this.Cocina = '';
+    this.Ventanas = '';
+    this.Ocupantes = '';
 
-    //SETTERS
+    document.getElementById("largo").onchange = getLargo;
 
-    this.setLargo = (evento) => {
+    function getLargo() {
 
-        var largo = parseFloat(evento.target.value);
+        var largo = parseFloat(document.getElementById("largo").value);
 
-        if (isNaN(largo) || largo == null || largo === 0) {
+        this.Largo = largo;
+
+        if (isNaN(largo)) {
             alert('Valor inválido: introducir valor numérico separando los decimales con punto.');
         } else {
-
-            this.Largo = largo;
-            return largo;
+            console.log(this.Largo);
         }
     }
 
-    this.setAncho = (evento) => {
 
-        var ancho = parseFloat(evento.target.value);
 
-        if (isNaN(ancho) || ancho == null || ancho === 0) {
-            alert('Valor inválido: introducir valor numérico separando los decimales con punto.');
-        } else {
-
-            this.Ancho = ancho;
-            return ancho;
-        }
-    }
-
-    this.setAlto = (evento) => {
-
-        var alto = parseFloat(evento.target.value);
-
-        if (isNaN(alto) || alto == null || alto === 0) {
-            alert('Valor inválido: introducir valor numérico separando los decimales con punto.');
-        } else {
-
-            this.Alto = alto;
-            return alto;
-        }
-    }
-
-    this.setOrientacion = () => {
-
-        var orientacion = document.getElementById("orientacion").value;
-
-        this.Orientacion = orientacion;
-        return orientacion;
-    }
-
-    this.setVentanas = (evento) => {
-
-        var ventanas = parseFloat(evento.target.value);
-
-        if (isNaN(ventanas) || ventanas == null) {
-            alert('Valor inválido: introducir valor numérico.);
-        } else {
-
-            this.Ventanas = ventanas;
-            return ventanas;
-        }
-    }
-
-    this.setOcupantes = (evento) => {
-
-        var ocupantes = parseFloat(evento.target.value);
-
-        if (isNaN(ocupantes) || ocupantes == null || ocupantes < 1) {
-            alert('Valor inválido: introducir valor numérico. La cantidad de ocupantes no puede ser inferior a 1.);
-        } else {
-
-            this.Ocupantes = ocupantes;
-            return ocupantes;
-        }
-    }
 
     //METODO GLOBAL//
 
@@ -133,7 +76,7 @@ function Ambiente(unaTemperatura) {
 
         metroscubicos = this.Largo * this.Ancho * this.Alto;
 
-        console.log(metroscubicos);
+        return metroscubicos;
     };
 
     this.calcularOrientacion = () => {
@@ -160,14 +103,12 @@ function Ambiente(unaTemperatura) {
 
     this.calcularCocina = () => {
         var cocina;
-
-        if (document.getElementById("cocina").checked) {
+        if (this.Cocina) {
             cocina = 1000;
         } else {
             cocina = 0;
         }
 
-        this.Cocina = cocina;
         return cocina;
     };
 
@@ -186,19 +127,12 @@ function Ambiente(unaTemperatura) {
         ocupantes = this.Ocupantes * 150;
 
         return ocupantes;
-    }
+    };
 }
 
 let miAmbiente = new Ambiente("muy calida", 5, 3, 2, "norte", false, 2, 3)
 
 miAmbiente.calculoGlobal();
-document.getElementById("largo").onchange = miAmbiente.setLargo;
-document.getElementById("ancho").onchange = miAmbiente.setAncho;
-document.getElementById("alto").onchange = miAmbiente.setAlto;
-miAmbiente.setOrientacion();
-document.getElementById("ventanas").onchange = miAmbiente.setVentanas;
-document.getElementById("ocupantes").onchange = miAmbiente.setOcupantes;
-
 
 //Botón imprimir//
 function imprimir() {
