@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frigologic</title>
+    <script src="./js/Ambiente.js"></script>
+    <script defer src="js/main.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
@@ -19,17 +21,17 @@
         <div class="temperatura__contenedor">
             <div class="temperatura__botonera">
                 <div class="temperatura__boton">
-                    <button name="templada" type="button" id="templada" value="templada"><img
+                    <button class="temp_btn_onclick" name="templada" type="button" id="templada" value="templada"><img
                             src="imagenes/templada.png" alt=""></button>
                     <label for="templada">TEMPLADA</label>
                 </div>
                 <div class="temperatura__boton">
-                    <button name="calida" type="button" id="calida" value="calida"><img src="imagenes/calida.png"
+                    <button class="temp_btn_onclick" name="calida" type="button" id="calida" value="calida"><img src="imagenes/calida.png"
                             alt=""></button>
                     <label for="calida">CALIDA</label>
                 </div>
                 <div class="temperatura__boton">
-                    <button name="muy_calida" type="button" id="muy_calida" value="muy_calida"><img
+                    <button class="temp_btn_onclick" name="muy_calida" type="button" id="muy_calida" value="muy_calida"><img
                             src="imagenes/muycalida.png" alt=""></button>
                     <label for="muy_calida">MUY CALIDA</label>
                 </div>
@@ -62,15 +64,15 @@
         <div class="adicionales__contenedor">
             <label for="orientacion">Orientación:</label>
             <select name="orientacion" id="orientacion">
-                <option value="norte">Norte</option>
-                <option value="sur">Sur</option>
-                <option value="este">Este</option>
-                <option value="oeste">Oeste</option>
+              <option value="norte">Norte</option>
+              <option value="sur">Sur</option>
+              <option value="este">Este</option>
+              <option value="oeste">Oeste</option>
             </select>
-        </div>
+          </div>
         <div class="adicionales__contenedor">
             <label for="checkbox">Cocina</label>
-            <input type="checkbox" id="cocina" value="1" required />
+            <input type="checkbox" name="accept" value="1" required />
         </div>
         <div class="adicionales__contenedor">
             <label for="ventanas">Ventanas</label>
@@ -110,7 +112,6 @@
         <button name="imprimir" type="button" id="imprimir" value="imprimir"><img src="imagenes/printer.png"
                 alt=""></button>
     </section>
-    <script src="js/main.js"></script>
 </body>
 
 </html>
